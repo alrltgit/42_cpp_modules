@@ -11,7 +11,7 @@ OBJS = $(SRC:.cpp=.o)
 NAME = megaphone
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	$(CC) -g $(FLAGS) $(OBJS) -o $(NAME)
 
 all: $(NAME)
 

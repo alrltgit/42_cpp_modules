@@ -21,6 +21,7 @@ class ToUpper {
             while (message[str_idx]) {
                 str = message[str_idx];
                 char_idx = 0;
+                temp_str = "";
                 while (str[char_idx]) {
                     temp_str += (char)toupper(str[char_idx]);
                     char_idx++;
@@ -30,13 +31,13 @@ class ToUpper {
             }
         }
 
-        public:
-            void str_to_uppercase(int size, char** message) {
-                if (size == 1)
-                    std::cout << this->default_message;
-                else
-                    convert_to_uppercase(size, message);
-        }
+    public:
+        void str_to_uppercase(int size, char** message) {
+            if (size == 1)
+                std::cout << this->default_message;
+            else
+                convert_to_uppercase(size, message);
+    }
 };
 
 int main(int argc, char **argv) {
