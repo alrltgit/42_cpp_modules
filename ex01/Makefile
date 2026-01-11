@@ -1,25 +1,22 @@
-CC = c++
+CC = g++
 
 RM = rm -f
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-SRC = megaphone.cpp
+SRC = Contact.cpp Phonebook.cpp main.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
-NAME = megaphone
+NAME = phonebook
 
 $(NAME): $(OBJS)
 	$(CC) -g $(FLAGS) $(OBJS) -o $(NAME)
 
 all: $(NAME)
 
-# ANY FILE ENDING IN .O DEPENDS ON THE SAME FILENAME ENDING IN .C TO BE PRESENT
 %o.:%c
 	$(CC) $(FLAGS) $< -c
-# 	$< is a wild card that means 'include the first prerequisite filename from
-# the target line here'
 
 clean:
 	$(RM) $(OBJS)
