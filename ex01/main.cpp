@@ -21,11 +21,11 @@ int main() {
         }
 
         // for (int i = 0; i < 2; i++) {
-        //     std::cout << phone_book.contacts[i].first_name << '\n';
-        //     std::cout << phone_book.contacts[i].last_name << '\n';
-        //     std::cout << phone_book.contacts[i].nickname << '\n';
-        //     std::cout << phone_book.contacts[i].phone_number << '\n';
-        //     std::cout << phone_book.contacts[i].darkest_secret << '\n';
+        //     std::cout << phonebook.contacts[i].first_name << '\n';
+        //     std::cout << phonebook.contacts[i].last_name << '\n';
+        //     std::cout << phonebook.contacts[i].nickname << '\n';
+        //     std::cout << phonebook.contacts[i].phone_number << '\n';
+        //     std::cout << phonebook.contacts[i].darkest_secret << '\n';
         // }
 
     }

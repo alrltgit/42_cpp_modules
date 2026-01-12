@@ -19,6 +19,7 @@ class PhoneBook {
         ~PhoneBook() {}; // destructor 
 
         void add_contact(Contact user);
+        std::string format_text(std::string text);
         void display_contacts();
 };
 
