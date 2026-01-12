@@ -6,9 +6,10 @@ class ToUpper {
     private:
         std::string default_message;
     
-    // constructor
     public:
-        ToUpper() : default_message("* LOUD AND UNBEARABLE FEEDBACK NOISE *") {};
+        ToUpper() {
+            default_message = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+        };
 
     private:
         void convert_to_uppercase(int size, char** message) {
@@ -29,12 +30,13 @@ class ToUpper {
                 std::cout << temp_str;
                 str_idx++;
             }
+            std::cout << std::endl;
         }
 
     public:
         void str_to_uppercase(int size, char** message) {
             if (size == 1)
-                std::cout << this->default_message;
+                std::cout << default_message << std::endl;
             else
                 convert_to_uppercase(size, message);
     }
