@@ -1,7 +1,6 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 #include <sstream>
-#include <cctype>
 
 void PhoneBook::add_contact(Contact user) {
     if (contact_idx == 7)
@@ -15,8 +14,9 @@ void PhoneBook::add_contact(Contact user) {
 
 std::string PhoneBook::format_text(std::string text) {
     if (text.length() > 10)
-            return text.substr(0, 9) + '.'; // if text is bigger that 10 chars, truncate the text with dot
-    return std::string(10 - text.length(), ' ') + text; // right-align padding
+            return text.substr(0, 9) + '.';
+    std::string right_align(10 - text.length(), ' '); // std::string constructor;
+    return right_align + text;
 }
 
 std::string PhoneBook::int_to_string(int num) {
@@ -58,7 +58,7 @@ void PhoneBook::ask_for_index() {
         std::cin >> idx;
         if (std::cin.fail()) { // check if the input is of the same type as the variable we try to insert the input to to
             std::cin.clear(); // clear the error flags on the input stream
-            std::cin.ignore(1000, '\n'); // leave the rest of the line
+            std::cin.ignore(1000, '\n'); //  ignore (or discard) certain number of characters from the input buffer
             std::cout << "Wrong index." << std::endl;
             continue ;
         }
