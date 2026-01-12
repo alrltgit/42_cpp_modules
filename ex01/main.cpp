@@ -18,6 +18,7 @@ int main() {
         }
         else if (cmd == "SEARCH") {
             phonebook.display_contacts();
+            phonebook.ask_for_index();
         }
 
         // for (int i = 0; i < 2; i++) {
