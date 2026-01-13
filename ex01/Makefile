@@ -1,4 +1,4 @@
-CC = g++
+CC = c++
 
 RM = rm -f
 
@@ -11,7 +11,7 @@ OBJS = $(SRC:.cpp=.o)
 NAME = phonebook
 
 $(NAME): $(OBJS)
-	$(CC) -g $(FLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 all: $(NAME)
 

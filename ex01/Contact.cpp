@@ -1,33 +1,39 @@
 #include "Contact.hpp"
 #include <iostream>
 
-// call the constructor
-// Contact::Contact(std::string first_name, std::string last_name, std::string phone_number, std::string darkest_secret) {
-//     std::cout << "Counstructor called";
-//     this->first_name = first_name;
-//     this->last_name = last_name;
-//     this->phone_number = phone_number;
-//     this->darkest_secret = darkest_secret;
-// }
-
 void Contact::set_contact() {
-    // store first name
     std::cout << "First name: ";
-    std::cin >> first_name;
+    if (!std::getline(std::cin, first_name))
+    {
+        std::cout << std::endl;
+        exit(0);
+    }
 
-    // store second name
     std::cout << "Second name: ";
-    std::cin >> last_name;
+    if (!std::getline(std::cin, last_name))
+    {
+        std::cout << std::endl;
+        exit(0);
+    }
 
-    // store nickname
     std::cout << "Nickname: ";
-    std::cin >> nickname;
+    if (!std::getline(std::cin, nickname))
+    {
+        std::cout << std::endl;
+        exit(0);
+    }
 
-    // store phone number
     std::cout << "Phone number: ";
-    std::cin >> phone_number;
+    if (!std::getline(std::cin, phone_number))
+    {
+        std::cout << std::endl;
+        exit(0);
+    }
 
-    // store darkest secret
     std::cout << "Darkest secret: ";
-    std::cin >> darkest_secret;
+    if (!std::getline(std::cin, darkest_secret))
+    {
+        std::cout << std::endl;
+        exit(0);
+    }
 }

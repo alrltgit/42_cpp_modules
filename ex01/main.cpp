@@ -6,12 +6,14 @@ int main() {
     Contact user;
     PhoneBook phonebook;
 
-    // cmd = "ADD";
-
     while (cmd != "EXIT") {
         std::cout << "Type one of three commands (ADD, SEARCH or EXIT): ";
-        std::cin >> cmd;
-
+    
+        if (!std::getline(std::cin, cmd))
+        {
+            std::cout << std::endl;
+            exit(0);
+        }
         if (cmd == "ADD") {
             user.set_contact();
             phonebook.add_contact(user);
@@ -20,15 +22,6 @@ int main() {
             phonebook.display_contacts();
             phonebook.ask_for_index();
         }
-
-        // for (int i = 0; i < 2; i++) {
-        //     std::cout << phonebook.contacts[i].first_name << '\n';
-        //     std::cout << phonebook.contacts[i].last_name << '\n';
-        //     std::cout << phonebook.contacts[i].nickname << '\n';
-        //     std::cout << phonebook.contacts[i].phone_number << '\n';
-        //     std::cout << phonebook.contacts[i].darkest_secret << '\n';
-        // }
-
     }
     return 0;
 }

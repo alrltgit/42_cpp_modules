@@ -11,15 +11,12 @@ OBJS = $(SRC:.cpp=.o)
 NAME = megaphone
 
 $(NAME): $(OBJS)
-	$(CC) -g $(FLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 all: $(NAME)
 
-# ANY FILE ENDING IN .O DEPENDS ON THE SAME FILENAME ENDING IN .C TO BE PRESENT
 %o.:%c
 	$(CC) $(FLAGS) $< -c
-# 	$< is a wild card that means 'include the first prerequisite filename from
-# the target line here'
 
 clean:
 	$(RM) $(OBJS)
