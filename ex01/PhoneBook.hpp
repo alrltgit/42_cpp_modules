@@ -11,9 +11,7 @@ class PhoneBook {
         int contact_idx;
     
     public:
-        PhoneBook() {
-            contact_idx = 0;
-        }; // constructor
+        PhoneBook() : contact_idx(0) {}; // constructor
         // PhoneBook(const PhoneBook &other);
         // PhoneBook& operator = (const PhoneBook& other);
         ~PhoneBook() {}; // destructor 

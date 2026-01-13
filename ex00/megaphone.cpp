@@ -7,9 +7,7 @@ class ToUpper {
         std::string default_message;
     
     public:
-        ToUpper() {
-            default_message = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-        };
+        ToUpper() : default_message("* LOUD AND UNBEARABLE FEEDBACK NOISE *") {};
 
     private:
         void convert_to_uppercase(int size, char** message) {
