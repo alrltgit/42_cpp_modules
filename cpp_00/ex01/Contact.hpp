@@ -20,6 +20,7 @@ class Contact {
         std::string get_phone_number();
         std::string get_darkest_secret();
         void set_contact();
+        bool valid_number(std::string phone_number);
 };
 
 #endif
