@@ -9,11 +9,17 @@ int main() {
     while (cmd != "EXIT") {
         std::cout << "Type one of three commands (ADD, SEARCH or EXIT): ";
     
-        if (!std::getline(std::cin, cmd))
+        std::cin >> cmd;
+        if (std::cin.eof())
         {
             std::cout << std::endl;
             exit(0);
         }
+        // if (!std::getline(std::cin, cmd))
+        // {
+        //     std::cout << std::endl;
+        //     exit(0);
+        // }
         if (cmd == "ADD") {
             user.set_contact();
             phonebook.add_contact(user);

@@ -22,7 +22,7 @@ void PhoneBook::add_contact(Contact user) {
 std::string PhoneBook::format_text(std::string text) {
     if (text.length() > 10)
             return text.substr(0, 9) + '.';
-    std::string right_align(10 - text.length(), ' ');\
+    std::string right_align(10 - text.length(), ' ');
     return right_align + text;
 }
 
