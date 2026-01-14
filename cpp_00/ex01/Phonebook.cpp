@@ -4,15 +4,16 @@
 #include <string>
 
 PhoneBook::PhoneBook() : contact_idx(0) {};
+PhoneBook::~PhoneBook() {};
 
 void PhoneBook::add_contact(Contact user) {
     if (user.first_name.empty() || user.last_name.empty() 
         || user.nickname.empty() || user.phone_number.empty()
         || user.darkest_secret.empty())
         return ;
-    if (contact_idx == 7)
+    if (contact_idx == 8)
     {
-        contacts[contact_idx] = user;
+        contacts[0] = user;
         return ;
     }
     contacts[contact_idx] = user;
@@ -53,7 +54,7 @@ void PhoneBook::ask_for_index() {
     while (1) {
         if (contacts[0].first_name.empty())
             return ;
-        std::cout << "Choose index from the list: ";
+        std::cout << "Choose index from the list: " << std::endl;
         
         std::cin >> idx;
         if (std::cin.eof())
@@ -83,5 +84,3 @@ void PhoneBook::display_chosen_contact(int idx) {
     std::cout << "Last name: " << contacts[idx].last_name << std::endl;
     std::cout << "Nickname: " << contacts[idx].nickname << std::endl;
 }
-
-PhoneBook::~PhoneBook() {};
