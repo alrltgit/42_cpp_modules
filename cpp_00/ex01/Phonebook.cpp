@@ -3,21 +3,32 @@
 #include <sstream>
 #include <string>
 
-PhoneBook::PhoneBook() : contact_idx(0) {};
+PhoneBook::PhoneBook() : contact_idx(0), oldest_contact_idx(0) {};
 PhoneBook::~PhoneBook() {};
 
+int PhoneBook::get_oldest_contact_idx() {
+    return oldest_contact_idx;
+}
+
+int PhoneBook::get_contact_idx() {
+    return contact_idx;
+}
+
+Contact PhoneBook::get_contacts() {
+    return contacts[8];
+}
+
 void PhoneBook::add_contact(Contact user) {
-    if (user.first_name.empty() || user.last_name.empty() 
-        || user.nickname.empty() || user.phone_number.empty()
-        || user.darkest_secret.empty())
-        return ;
     if (contact_idx == 8)
     {
-        contacts[0] = user;
-        return ;
+        if (oldest_contact_idx == 8)
+            oldest_contact_idx = 0;
+        contacts[oldest_contact_idx] = user;
+        oldest_contact_idx++;
     }
     contacts[contact_idx] = user;
     contact_idx++;
+    std::cout << "Contact_idx" << contact_idx << std::endl;
 };
 
 std::string PhoneBook::format_text(std::string text) {
@@ -39,11 +50,11 @@ void PhoneBook::display_contacts() {
             << format_text("last name") << '|'
             << format_text("nickname") << '|' << std::endl;
     for (int i = 0; i < 8; i++) {
-        if (contacts[i].first_name != "") {
+        if (contacts[i].get_first_name() != "") {
             std::cout << format_text(int_to_string(i)) << '|'
-                << format_text(contacts[i].first_name) << '|'
-                << format_text(contacts[i].last_name) << '|'
-                << format_text(contacts[i].nickname) << '|' << std::endl;
+                << format_text(contacts[i].get_first_name()) << '|'
+                << format_text(contacts[i].get_last_name()) << '|'
+                << format_text(contacts[i].get_nickname()) << '|' << std::endl;
         }
     }
 }
@@ -52,7 +63,7 @@ void PhoneBook::ask_for_index() {
     int idx;
 
     while (1) {
-        if (contacts[0].first_name.empty())
+        if (contacts[0].get_first_name().empty())
             return ;
         std::cout << "Choose index from the list: " << std::endl;
         
@@ -80,7 +91,7 @@ void PhoneBook::ask_for_index() {
 
 void PhoneBook::display_chosen_contact(int idx) {
     std::cout << "Index: " << int_to_string(idx) << std::endl;
-    std::cout << "First name: " << contacts[idx].first_name << std::endl;
-    std::cout << "Last name: " << contacts[idx].last_name << std::endl;
-    std::cout << "Nickname: " << contacts[idx].nickname << std::endl;
+    std::cout << "First name: " << contacts[idx].get_first_name() << std::endl;
+    std::cout << "Last name: " << contacts[idx].get_last_name() << std::endl;
+    std::cout << "Nickname: " << contacts[idx].get_nickname() << std::endl;
 }
