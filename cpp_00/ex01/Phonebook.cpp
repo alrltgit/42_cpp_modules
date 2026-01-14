@@ -14,21 +14,16 @@ int PhoneBook::get_contact_idx() {
     return contact_idx;
 }
 
-Contact PhoneBook::get_contacts() {
-    return contacts[8];
-}
-
 void PhoneBook::add_contact(Contact user) {
-    if (contact_idx == 8)
-    {
+    if (contact_idx < 8) {
+        contacts[contact_idx] = user;
+        contact_idx++;
+    } else {
         if (oldest_contact_idx == 8)
             oldest_contact_idx = 0;
         contacts[oldest_contact_idx] = user;
         oldest_contact_idx++;
     }
-    contacts[contact_idx] = user;
-    contact_idx++;
-    std::cout << "Contact_idx" << contact_idx << std::endl;
 };
 
 std::string PhoneBook::format_text(std::string text) {
@@ -80,7 +75,7 @@ void PhoneBook::ask_for_index() {
             continue ;
         }
 
-        if (idx < contact_idx || idx == 7) {
+        if (idx >= 0 && idx < 8 && !contacts[idx].get_first_name().empty()) {
             display_chosen_contact(idx);
             break ;
         }

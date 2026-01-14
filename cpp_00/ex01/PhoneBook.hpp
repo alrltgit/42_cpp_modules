@@ -16,7 +16,6 @@ class PhoneBook {
         // getters
         int get_oldest_contact_idx();
         int get_contact_idx();
-        Contact get_contacts();
     
         void add_contact(Contact user);
         std::string format_text(std::string text);
