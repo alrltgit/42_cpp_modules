@@ -15,9 +15,6 @@ $(NAME): $(OBJS)
 
 all: $(NAME)
 
-%o.:%c
-	$(CC) $(FLAGS) $< -c
-
 clean:
 	$(RM) $(OBJS)
 

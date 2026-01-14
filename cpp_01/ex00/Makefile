@@ -4,11 +4,11 @@ RM = rm -f
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-SRC = Contact.cpp Phonebook.cpp main.cpp
+SRC = main.cpp Zombie.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
-NAME = phonebook
+NAME = Zombie
 
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)

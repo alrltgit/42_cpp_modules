@@ -6,14 +6,6 @@
 PhoneBook::PhoneBook() : contact_idx(0), oldest_contact_idx(0) {};
 PhoneBook::~PhoneBook() {};
 
-int PhoneBook::get_oldest_contact_idx() {
-    return oldest_contact_idx;
-}
-
-int PhoneBook::get_contact_idx() {
-    return contact_idx;
-}
-
 void PhoneBook::add_contact(Contact user) {
     if (contact_idx < 8) {
         contacts[contact_idx] = user;
