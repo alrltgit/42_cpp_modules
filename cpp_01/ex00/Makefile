@@ -4,7 +4,7 @@ RM = rm -f
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-SRC = main.cpp Zombie.cpp
+SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
