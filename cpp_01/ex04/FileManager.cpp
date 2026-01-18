@@ -3,7 +3,8 @@
 #include <iostream>
 #include <fstream>
 
-FileManager::FileManager(std::string newFilename, std::string str1, std::string str2) : filename(newFilename), s1(str1), s2(str2) {};
+FileManager::FileManager(std::string newFilename, std::string str1, std::string str2) 
+    : filename(newFilename), s1(str1), s2(str2) {};
 
 FileManager::~FileManager() {};
 
@@ -25,7 +26,7 @@ void FileManager::replace() {
         std::cout << "Copying finished" << std::endl;
     }
     else
-        std::cout << "Check files!" << std::endl;
+        std::cout << "Check filename!" << std::endl;
     gFile.close();
     copy.close();
 }

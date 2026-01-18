@@ -3,13 +3,14 @@
 #include <fstream>
 
 
-int main() {
-    // create and open a text file
-    // std::ifstream givenFile("givenFile.txt");
-    // std::ofstream copy("copy.txt");
-    std::string givenFile = "givenFile";
-    std::string str1 = "light";
-    std::string str2 = "sun";
+int main(int ac, char** av) {
+    if (ac != 4) {
+        std::cout << "Wrong number of arguments" << std::endl;
+        exit(1);
+    }
+    std::string givenFile = av[1];
+    std::string str1 = av[2];
+    std::string str2 = av[3];
     FileManager manager(givenFile, str1, str2);
    
     // copy file
