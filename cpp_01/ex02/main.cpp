@@ -3,15 +3,8 @@
 int main () {
     std::string var = "HI THIS IS BRAIN";
     
-    // pointer to the string (a variable that stores an address):
-    // - can be null
-    // - can be reassigned
     std::string* stringPTR = &var;
-
-    // reference to the string (another name for an existing object)
-    // can't be null
-    // can't be reassigned
-    std::string& stringREF = var; // stringRef is another name for var
+    std::string& stringREF = var;
 
     std::cout << "The memory address of string variable is " << &var << std::endl;
     std::cout << "The memory address held by stringPTR is " << stringPTR << std::endl;

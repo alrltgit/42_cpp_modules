@@ -5,7 +5,7 @@
 
 class HumanB {
     private:
-        Weapon *weaponB; // can be null
+        Weapon *weaponB;
         std::string name;
 
     public:

@@ -2,13 +2,12 @@
 
 Zombie::Zombie(std::string zombieName) {
     name = zombieName;
-    std::cout << name << ": Constructor is called" << std::endl;
 };
+
 Zombie::~Zombie() {
     std::cout << name << ": Destructor is called" << std::endl;
 };
 
-// getter
 const std::string& Zombie::getName( void ) const { return name; }
 
 void Zombie::announce( void ) {

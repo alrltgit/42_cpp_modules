@@ -5,7 +5,7 @@
 
 class HumanA {
     private:
-        Weapon& weaponA; // reference is exactly the same object
+        Weapon& weaponA;
         std::string name;
     
     public:

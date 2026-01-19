@@ -38,10 +38,6 @@ void Harl::error() {
 }
 
 void Harl::complain(std::string level) {
-    // In C++, functions can be treated as objects with 
-    // the help of function pointers. A function pointer 
-    // to a member function is a pointer that can refer to 
-    // a member function of a specific class.
     int i = 4;
 
     std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};

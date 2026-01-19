@@ -11,10 +11,14 @@ FileManager::~FileManager() {};
 void FileManager::replace() {
     std::string line;
     std::ifstream gFile(filename);
-    std::ofstream copy(filename + ".replace");
     size_t str_idx;
     
-    if (gFile) {
+    if (!gFile) {
+        std::cout << "Check filename!" << std::endl;
+        exit(1);
+    }
+    else {
+        std::ofstream copy(filename + ".replace");
         while (getline(gFile, line)) {
             str_idx = 0;
             while ((str_idx = line.find(s1, str_idx) )!= std::string::npos) {
@@ -24,9 +28,7 @@ void FileManager::replace() {
             copy << line << std::endl;
         }
         std::cout << "Copying finished" << std::endl;
+        copy.close();
     }
-    else
-        std::cout << "Check filename!" << std::endl;
     gFile.close();
-    copy.close();
 }
