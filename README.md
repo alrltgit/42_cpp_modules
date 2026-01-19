@@ -5,8 +5,11 @@ The goal of these modules is to learn **Object-Oriented Programming in C++**, me
 
 - **CPP00** – Namespaces, classes, member functions, stdio streams, initialization lists, access specifiers.
 
+- **CPP01** - Memory allocation, pointers to members, references and switch statements.
+
 ## ⚙️ Compilation
 
 ```bash
 make
+
 
