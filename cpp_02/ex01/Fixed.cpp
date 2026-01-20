@@ -1,0 +1,62 @@
+#include "Fixed.hpp"
+#include <cmath>
+
+Fixed::Fixed() : fixedPointNb(0) {
+    std::cout <<  "Default constructor called" << std::endl;
+};
+
+// A fixed-point number is a way to represent real (decimal) 
+// numbers using integers, by agreeing in advance 
+// where the decimal point is fixed.
+
+// to convert int to fixed-point, you must shift left
+Fixed::Fixed(const int newFixedPointNb) 
+    : fixedPointNb(newFixedPointNb << fractBits) {
+        std::cout << "Int constructor called" << std::endl;
+    };
+
+// to convert float to fixed-point
+Fixed::Fixed(const float newFixedPointNb)
+    : fixedPointNb(roundf(newFixedPointNb * (1 << fractBits))) {
+        std::cout << "Float constructor called" << std::endl;
+    };
+
+Fixed::Fixed(const Fixed& other) {
+    std::cout << "Copy constructor called" << std::endl;
+    *this = other;
+}
+
+Fixed& Fixed::operator = (const Fixed& other) {
+    std::cout << "Copy assignment operator called" << std::endl;
+    if (this != &other)
+        fixedPointNb = other.getRawBits();
+    
+    return *this;
+}
+
+Fixed::~Fixed() {
+    std::cout << "Destructor called" << std::endl;
+};
+
+int Fixed::getRawBits() const {
+    std::cout << "getRawBits member function called" << std::endl;
+    return fixedPointNb;
+}
+
+void Fixed::setRawBits(int const raw) {
+    std::cout << "setRawBits member function called" << std::endl;
+    fixedPointNb = raw;
+}
+
+float Fixed::toFloat(void) const {
+    return (float)fixedPointNb / (1 << fractBits);
+};
+
+int Fixed::toInt(void) const {
+    return fixedPointNb >> fractBits;
+};
+
+std::ostream& operator<<(std::ostream& out, const Fixed& obj) {
+    out << obj.toFloat();
+    return out;
+}
