@@ -18,7 +18,7 @@ Fixed::Fixed() : fixedPointNb(0) {
 
 Fixed::Fixed(const Fixed& other) {
     std::cout << "Copy constructor called" << std::endl;
-    *this = other; // using assignment inside a copy constructor
+    *this = other;
 }
 
 // Copy Assignment Operator
