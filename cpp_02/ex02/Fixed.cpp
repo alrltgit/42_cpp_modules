@@ -95,4 +95,24 @@ Fixed Fixed::operator/(const Fixed& other) const {
     return this->toFloat() / other.toFloat();
 }
 
+Fixed Fixed::operator++(int) {
+    Fixed temp = *this;
+    ++*this;
+    return temp;
+}
 
+Fixed Fixed::operator--(int) {
+    Fixed temp = *this;
+    --*this;
+    return temp;
+}
+
+Fixed& Fixed::operator++() {
+    fixedPointNb++;
+    return *this;
+}
+
+Fixed& Fixed::operator--() {
+    fixedPointNb--;
+    return *this;
+}

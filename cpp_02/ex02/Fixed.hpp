@@ -33,6 +33,12 @@ class Fixed {
         Fixed operator-(const Fixed& other) const;
         Fixed operator*(const Fixed& other) const;
         Fixed operator/(const Fixed& other) const;
+
+        Fixed operator++(int); // postfix operator implementation // return Fixed object by value, i.g. the copy of Fixed object
+        Fixed operator--(int); // postfix operator implementation
+        Fixed& operator++();
+        Fixed& operator--();
+
     };
 
 std::ostream & operator<<(std::ostream& out, const Fixed& obj);
