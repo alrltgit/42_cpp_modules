@@ -10,6 +10,9 @@ OBJS = $(SRC:.cpp=.o)
 
 NAME = main
 
+%.o: %.cpp
+	$(CC) $(FLAGS) -c $< -o $@
+
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 

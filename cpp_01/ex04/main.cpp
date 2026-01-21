@@ -6,7 +6,7 @@
 int main(int ac, char** av) {
     if (ac != 4) {
         std::cout << "Wrong number of arguments" << std::endl;
-        exit(1);
+        return 1;
     }
     std::string givenFile = av[1];
     std::string str1 = av[2];
