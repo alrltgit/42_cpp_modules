@@ -10,23 +10,22 @@ FileManager::~FileManager() {};
 
 void FileManager::replace() {
     std::string line;
-    std::fstream gFile(filename.c_str(), std::ios::in); // fstream - both reading and writing
+    std::ifstream gFile(filename.c_str());
     size_t str_idx;
     
-    if (!gFile.is_open()) { // checks whether the file stream is successfully associated with an open file
+    if (!gFile.is_open()) {
         std::cout << "Check filename!" << std::endl;
         return ;
     }
 
-    // .c_str() to convert std::string to const char*
-    std::fstream copy((filename + ".replace").c_str(), std::ios::out);
+    if (s1 == "") {
+        std::cout << "Empty string!" << std::endl;
+        return ;
+    }
+    std::ofstream copy((filename + ".replace").c_str());
     if (!copy.is_open()) {
         gFile.close();
         std::cout << "Check filename!" << std::endl;
-        return ;
-    }
-    if (s1 == "" || s2 == "") {
-        std::cout << "Empty string!" << std::endl;
         return ;
     }
     while (getline(gFile, line)) {

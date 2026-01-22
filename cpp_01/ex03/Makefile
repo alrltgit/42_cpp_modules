@@ -10,8 +10,8 @@ OBJS = $(SRC:.cpp=.o)
 
 NAME = Weapon
 
-# %.o: %.cpp
-# 	$(CC) $(FLAGS) -c $< -o $@
+%.o: %.cpp
+	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
