@@ -36,11 +36,15 @@ class Fixed {
 
         Fixed operator++(int); // postfix operator implementation // return Fixed object by value, i.g. the copy of Fixed object
         Fixed operator--(int); // postfix operator implementation
-        Fixed& operator++();
-        Fixed& operator--();
+        Fixed& operator++(); // prefix operator implementation
+        Fixed& operator--(); // prefix operator implementation
 
+        static Fixed& min(Fixed& obj1, Fixed& obj2); // static func can be called without creating an object, does not have access to this pointer
+        static Fixed& max(Fixed& obj1, Fixed& obj2);
+        static const Fixed& min(const Fixed& obj1, const Fixed& obj2);
+        static const Fixed& max(const Fixed& obj1, const Fixed& obj2);
     };
 
-std::ostream & operator<<(std::ostream& out, const Fixed& obj);
+std::ostream& operator<<(std::ostream& out, const Fixed& obj);
 
 #endif

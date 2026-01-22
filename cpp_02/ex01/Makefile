@@ -13,6 +13,9 @@ NAME = Fixed
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
+%.o: %.cpp
+	$(CC) $(FLAGS) -c $< -o $@
+
 all: $(NAME)
 
 clean:
