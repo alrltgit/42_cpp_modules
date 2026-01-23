@@ -13,6 +13,8 @@ class Fixed {
         Fixed(const int newFixedPointNb);
         Fixed(const float newFixedPointNb);
 
+        // shift to the right - num / 2
+        // shift to the left - num * 2
         Fixed(const Fixed& other); // copy constructor
         Fixed& operator = (const Fixed& other); // copy assignment operator
         ~Fixed();

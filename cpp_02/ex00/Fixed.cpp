@@ -3,12 +3,7 @@
 Fixed::Fixed() : fixedPointNb(0) {
     std::cout <<  "Default constructor called" << std::endl;
 };
-
-// A copy constructor is a special type of constructor 
-// used to create a new object using an existing object 
-// of the same class.
-// Copy Constructor
-// Purpose
+// Copy constructor
 // Creates a new object as a copy of an existing one.
 // When it’s called
 // When a new object is initialized from another object

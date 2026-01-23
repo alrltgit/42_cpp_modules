@@ -5,9 +5,7 @@ Fixed::Fixed() : fixedPointNb(0) {
     std::cout <<  "Default constructor called" << std::endl;
 };
 
-// A fixed-point number is a way to represent real (decimal) 
-// numbers using integers, by agreeing in advance 
-// where the decimal point is fixed.
+// example:  fixed<8,3> - signifies an 8-bit fixed-point number, the rightmost 3 bits of which are fractional
 
 // to convert int to fixed-point, you must shift left
 Fixed::Fixed(const int newFixedPointNb) 
@@ -53,10 +51,11 @@ float Fixed::toFloat(void) const {
 };
 
 int Fixed::toInt(void) const {
+    // std::cout << "NO:" << fixedPointNb << std::endl;
     return fixedPointNb >> fractBits;
 };
 
-std::ostream& operator<<(std::ostream& out, const Fixed& obj) {
+std::ostream& operator<<(std::ostream& out, const Fixed& obj) { // is used only when the right hand operand is a Fixed object
     out << obj.toFloat();
     return out;
 }
