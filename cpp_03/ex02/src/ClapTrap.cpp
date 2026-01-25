@@ -1,17 +1,18 @@
-#include "ClapTrap.hpp"
+#include "../inc/ClapTrap.hpp"
 
 ClapTrap::ClapTrap(std::string newName) 
     : name(newName), hitPoints(10), energyPoints(10), attackDamage(0) {
-        std::cout << name << ": Constructor called" << std::endl;
+        std::cout << "ClapTrap " << name << " constructor is called" << std::endl;
     };
 
 ClapTrap::ClapTrap(const ClapTrap& other) {
-    std::cout << name << ": Copy constructor called" << std::endl;
+    std::cout << "ClapTrap " << name << ": Copy constructor called" << std::endl;
     *this = other;
 }
 
 ClapTrap& ClapTrap::operator = (const ClapTrap& other) {
     if (this != &other) {
+        name = other.name;
         hitPoints = other.hitPoints;
         energyPoints = other.energyPoints;
         attackDamage = other.attackDamage;
@@ -20,7 +21,7 @@ ClapTrap& ClapTrap::operator = (const ClapTrap& other) {
 }
 
 ClapTrap::~ClapTrap() {
-    std::cout << name << ": Destructor called" << std::endl;
+    std::cout << "ClapTrap " << name << ": Destructor called" << std::endl;
 };
 
 void ClapTrap::attack(const std::string& target) {

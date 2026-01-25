@@ -4,11 +4,11 @@ RM = rm -f
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-SRC = main.cpp src/ClapTrap.cpp src/ScavTrap.cpp
+SRC = main.cpp src/ClapTrap.cpp src/ScavTrap.cpp src/FragTrap.cpp
 
 OBJS = $(SRC:.cpp=.o)
 
-NAME = ScavTrap
+NAME = FragTrap
 
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)

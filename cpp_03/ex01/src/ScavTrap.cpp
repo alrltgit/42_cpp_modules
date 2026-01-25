@@ -1,5 +1,5 @@
-#include "ScavTrap.hpp"
-#include "ClapTrap.hpp"
+#include "../inc/ScavTrap.hpp"
+#include "../inc/ClapTrap.hpp"
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
     hitPoints = 100;

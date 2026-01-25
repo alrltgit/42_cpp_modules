@@ -1,4 +1,4 @@
-#include "ClapTrap.hpp"
+#include "../inc/ClapTrap.hpp"
 
 ClapTrap::ClapTrap(std::string newName) 
     : name(newName), hitPoints(10), energyPoints(10), attackDamage(0) {
@@ -59,7 +59,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
     }
     else {
         energyPoints = 0;
-        std::cout << "ClapTrap " << name <<  "has no energy or hit points to repair."
+        std::cout << "ClapTrap " << name <<  " has no energy or hit points to repair."
             << std::endl;
     }
 }
