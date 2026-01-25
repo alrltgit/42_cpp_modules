@@ -97,51 +97,47 @@ Fixed Fixed::operator/(const Fixed& other) const {
 
 Fixed Fixed::operator++(int) {
     Fixed temp = *this;
-    ++*this;
+    this->fixedPointNb++;
     return temp;
 }
 
 Fixed Fixed::operator--(int) {
     Fixed temp = *this;
-    --*this;
+    this->fixedPointNb--;
     return temp;
 }
 
 Fixed& Fixed::operator++() {
-    fixedPointNb++;
+    this->fixedPointNb++;
     return *this;
 }
 
 Fixed& Fixed::operator--() {
-    fixedPointNb--;
+    this->fixedPointNb--;
     return *this;
 }
 
 Fixed& Fixed::min(Fixed& obj1, Fixed& obj2) {
-    if (obj1 <= obj2)
+    if (obj1 < obj2)
         return obj1;
-    else
-        return obj2;
+    return obj2;
 }
 
 Fixed& Fixed::max(Fixed& obj1, Fixed& obj2) {
-    if (obj1 >= obj2)
+    if (obj1 > obj2)
         return obj1;
-    else
-        return obj2;
+    return obj2;
 }
 
 const Fixed& Fixed::min(const Fixed& obj1, const Fixed& obj2) {
-    if (obj1 <= obj2)
+    if (obj1 < obj2)
         return obj1;
-    else
-        return obj2;
+    return obj2;
 }
 
 const Fixed& Fixed::max(const Fixed& obj1, const Fixed& obj2) {
-    if (obj1 >= obj2)
+    if (obj1 > obj2)
         return obj1;
-    else
-        return obj2;
+    return obj2;
 }
 
