@@ -13,14 +13,12 @@ class Fixed {
         Fixed(const int newFixedPointNb);
         Fixed(const float newFixedPointNb);
 
-        // shift to the right - num / 2
-        // shift to the left - num * 2
-        Fixed(const Fixed& other); // copy constructor
-        Fixed& operator = (const Fixed& other); // copy assignment operator
+        Fixed(const Fixed& other);
+        Fixed& operator = (const Fixed& other);
         ~Fixed();
 
-        int getRawBits(void) const; // that returns the raw value of the fixed-point value.
-        void setRawBits(int const raw); //  sets the raw value of the fixed-point number
+        int getRawBits(void) const;
+        void setRawBits(int const raw);
         float toFloat(void) const;
         int toInt(void) const;
     };

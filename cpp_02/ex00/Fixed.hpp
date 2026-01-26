@@ -9,12 +9,12 @@ class Fixed {
 
     public:
         Fixed();
-        Fixed(const Fixed& other); // copy constructor
-        Fixed& operator = (const Fixed& other); // copy assignment operator
+        Fixed(const Fixed& other);
+        Fixed& operator = (const Fixed& other);
         ~Fixed();
 
-        int getRawBits(void) const; // that returns the raw value of the fixed-point value.
-        void setRawBits(int const raw); //  sets the raw value of the fixed-point number
+        int getRawBits(void) const;
+        void setRawBits(int const raw);
 };
 
 #endif

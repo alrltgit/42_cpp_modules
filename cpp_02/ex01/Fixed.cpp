@@ -5,15 +5,11 @@ Fixed::Fixed() : fixedPointNb(0) {
     std::cout <<  "Default constructor called" << std::endl;
 };
 
-// example:  fixed<8,3> - signifies an 8-bit fixed-point number, the rightmost 3 bits of which are fractional
-
-// to convert int to fixed-point, you must shift left
 Fixed::Fixed(const int newFixedPointNb) 
     : fixedPointNb(newFixedPointNb << fractBits) {
         std::cout << "Int constructor called" << std::endl;
     };
 
-// to convert float to fixed-point
 Fixed::Fixed(const float newFixedPointNb)
     : fixedPointNb(roundf(newFixedPointNb * (1 << fractBits))) {
         std::cout << "Float constructor called" << std::endl;
@@ -51,11 +47,10 @@ float Fixed::toFloat(void) const {
 };
 
 int Fixed::toInt(void) const {
-    // std::cout << "NO:" << fixedPointNb << std::endl;
     return fixedPointNb >> fractBits;
 };
 
-std::ostream& operator<<(std::ostream& out, const Fixed& obj) { // is used only when the right hand operand is a Fixed object
+std::ostream& operator<<(std::ostream& out, const Fixed& obj) {
     out << obj.toFloat();
     return out;
 }

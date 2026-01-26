@@ -34,12 +34,12 @@ class Fixed {
         Fixed operator*(const Fixed& other) const;
         Fixed operator/(const Fixed& other) const;
 
-        Fixed operator++(int); // post-increment
-        Fixed operator--(int); // post-decrement
-        Fixed& operator++(); // pre-increment
-        Fixed& operator--(); // pre-decrement
+        Fixed operator++(int);
+        Fixed operator--(int);
+        Fixed& operator++();
+        Fixed& operator--();
 
-        static Fixed& min(Fixed& obj1, Fixed& obj2); // static func can be called without creating an object, does not have access to this pointer
+        static Fixed& min(Fixed& obj1, Fixed& obj2);
         static Fixed& max(Fixed& obj1, Fixed& obj2);
         static const Fixed& min(const Fixed& obj1, const Fixed& obj2);
         static const Fixed& max(const Fixed& obj1, const Fixed& obj2);
