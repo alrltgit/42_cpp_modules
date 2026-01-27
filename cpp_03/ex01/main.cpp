@@ -3,14 +3,14 @@
 
 int main(void)
 {
-    ClapTrap obj0("CL4-Df");
+    // ClapTrap obj0("CL4-Df");
     ScavTrap obj1("AL-34Q");
 
     std::cout << std::endl;
 
-    obj0.attack("TARGET_1");
-    obj0.takeDamage(30);
-    obj0.beRepaired(20);
+    // obj0.attack("TARGET_1");
+    // obj0.takeDamage(30);
+    // obj0.beRepaired(20);
 
     std::cout << std::endl;
 

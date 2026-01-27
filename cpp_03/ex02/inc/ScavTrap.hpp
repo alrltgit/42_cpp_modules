@@ -3,7 +3,6 @@
 #include <iostream>
 #include "ClapTrap.hpp"
 
-// Private members are inherited, but not accessible in derived classes
 class ScavTrap : public ClapTrap {
     public:
         ScavTrap(std::string newName);

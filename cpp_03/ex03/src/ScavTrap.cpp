@@ -5,7 +5,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
     hitPoints = 100;
     energyPoints = 50;
     attackDamage = 20;
-    std::cout << "ScavTrap " << name << " constructor is called." << std::endl;
+    std::cout << "ScavTrap " << name << " constructor called." << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {

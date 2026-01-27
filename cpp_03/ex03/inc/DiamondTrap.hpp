@@ -14,6 +14,7 @@ class DiamondTrap : public FragTrap, public ScavTrap {
         DiamondTrap& operator = (const DiamondTrap& other);
         ~DiamondTrap();
 
+        using ScavTrap::attack; // inherit attack from ScavTrap
         void whoAmI();
 };
 

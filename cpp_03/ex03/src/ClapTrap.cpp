@@ -11,6 +11,7 @@ ClapTrap::ClapTrap(const ClapTrap& other) {
 }
 
 ClapTrap& ClapTrap::operator = (const ClapTrap& other) {
+    std::cout << "ClapTrap " << name << " copy constructor is called" << std::endl;
     if (this != &other) {
         name = other.name;
         hitPoints = other.hitPoints;
@@ -62,8 +63,4 @@ void ClapTrap::beRepaired(unsigned int amount) {
         std::cout << "ClapTrap " << name <<  " has no energy or hit points to repair."
             << std::endl;
     }
-}
-
-std::string ClapTrap::name() {
-    return name + "_clap_name";
 }

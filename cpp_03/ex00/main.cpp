@@ -9,6 +9,9 @@ int main(void)
     obj.attack("TARGET_1");
     obj.takeDamage(5);
     obj.beRepaired(3);
+    obj.attack("Target_2");
+    obj.takeDamage(10);
+    obj.attack("Target_3");
 
     std::cout << std::endl;
     return 0;

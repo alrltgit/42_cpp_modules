@@ -2,7 +2,7 @@
 
 ClapTrap::ClapTrap(std::string newName) 
     : name(newName), hitPoints(10), energyPoints(10), attackDamage(0) {
-        std::cout << name << ": Constructor called" << std::endl;
+        std::cout << "ClapTrap " << name << ": Constructor called" << std::endl;
     };
 
 ClapTrap::ClapTrap(const ClapTrap& other) {
