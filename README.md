@@ -7,9 +7,12 @@ The goal of these modules is to learn **Object-Oriented Programming in C++**, me
 
 - **CPP01** - Memory allocation, pointers to members, references and switch statements.
 
-- **CPP02** - Inheritance.
+- **CPP02** - Ad-hoc polymorphism, operator overloading and the Orthodox Canonical class form.
+
+- **CPP03** - Inheritance.
 
 ## ⚙️ Compilation
 
 ```bash
 make
+
