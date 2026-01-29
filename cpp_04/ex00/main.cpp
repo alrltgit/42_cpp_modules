@@ -17,8 +17,8 @@ int main()
     std::cout << cat->getType() << " " << std::endl;
     std::cout << dog->getType() << " " << std::endl;
 
-    i->makeSound();
     j->makeSound();
+    i->makeSound();
     meta->makeSound();
     cat->makeSound();
     dog->makeSound();
