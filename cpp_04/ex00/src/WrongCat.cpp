@@ -16,7 +16,6 @@ WrongCat& WrongCat::operator = (const WrongCat& other) {
     if (this != &other) {
         type = other.type;
     }
-
     return *this;
 }
 

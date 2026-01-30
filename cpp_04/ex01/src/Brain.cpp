@@ -24,11 +24,18 @@ Brain::~Brain() {
 }
 
 void Brain::displayIdea() const {
-    for (int i = 0; i < 2; i++) {
+    int i = 0;
+
+    while (!ideas[i].empty()) {
         std::cout << ideas[i] << std::endl;
+        i++;
     }
 }
 
 void Brain::setIdea(int i, std::string idea) {
-    ideas[i] = idea;   
+    if (i >= 0 && i < 100)
+        ideas[i] = idea;   
+    else {
+        std::cout << "Index is out of range" << std::endl;
+    }
 }

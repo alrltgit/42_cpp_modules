@@ -3,13 +3,14 @@
 #include "../inc/Brain.hpp"
 
 Cat::Cat() : Animal() {
+    std::cout << "Cat: default constructor called" << std::endl;
     type = "Cat";
     br = new Brain();
-    std::cout << "Cat: default constructor called" << std::endl;
 };
 
 Cat::Cat(const Cat& other) : Animal(other) {
     std::cout << "Cat: copy constructor called" << std::endl;
+    br = NULL;
     *this = other;
 }
 
@@ -26,8 +27,8 @@ Cat& Cat::operator = (const Cat& other) {
 }
 
 Cat::~Cat() {
-    std::cout << "Cat: destructor called" << std::endl;
     delete br;
+    std::cout << "Cat: destructor called" << std::endl;
 }
 
 Brain* Cat::getBrain() const {

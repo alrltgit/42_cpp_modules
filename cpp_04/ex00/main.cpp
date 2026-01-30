@@ -12,16 +12,22 @@ int main()
     const Cat *cat = new Cat();
     const Dog *dog = new Dog();
 
+    std::cout << "----------------------" << std::endl;
+
     std::cout << j->getType() << " " << std::endl;
     std::cout << i->getType() << " " << std::endl;
     std::cout << cat->getType() << " " << std::endl;
     std::cout << dog->getType() << " " << std::endl;
+
+    std::cout << "----------------------" << std::endl;
 
     j->makeSound();
     i->makeSound();
     meta->makeSound();
     cat->makeSound();
     dog->makeSound();
+
+    std::cout << "----------------------" << std::endl;
 
     delete j;
     delete i;
@@ -35,13 +41,19 @@ int main()
     WrongAnimal* wrC = new WrongCat();
     WrongCat* wC = new WrongCat();
 
+    std::cout << "----------------------" << std::endl;
+
     std::cout << wA->getType() << " " << std::endl;
     std::cout << wrC->getType() << " " << std::endl;
     std::cout << wC->getType() << " " << std::endl;
 
+    std::cout << "----------------------" << std::endl;
+
     wA->makeSound();
     wrC->makeSound();
     wC->makeSound();
+
+    std::cout << "----------------------" << std::endl;
 
     delete wC;
     delete wrC;

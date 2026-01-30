@@ -38,6 +38,7 @@ int main()
     cat->getBrain()->setIdea(1, "Cat: Idea #2");
     dog->getBrain()->setIdea(0, "Dog: Idea #1");
     dog->getBrain()->setIdea(1, "Dog: Idea #2");
+    dog->getBrain()->setIdea(2, "Dog: Idea #3");
 
     std::cout << "----- Cat ideas -----" << std::endl;
     cat->getBrain()->displayIdea();
