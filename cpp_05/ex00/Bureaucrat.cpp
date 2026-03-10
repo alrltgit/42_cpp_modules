@@ -1,7 +1,28 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(int new_grade, std::string new_name) : name(new_name), grade(new_grade) {
+Bureaucrat::Bureaucrat(int newGrade, std::string newName)
+    : name(newName), grade(newGrade)
+{
     std::cout << "Construct is called" << std::endl;
+
+    if (grade < 1)
+        throw Bureaucrat::GradeTooHighException();
+    else if (grade > 150)
+        throw Bureaucrat::GradeTooLowException();
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat& other)
+{
+    *this = other;
+}
+
+Bureaucrat& Bureaucrat::operator = (const Bureaucrat& other)
+{
+    if (this != &other)
+    {
+        grade = other.getGrade();
+    }
+    return *this;
 }
 
 Bureaucrat::~Bureaucrat() {
@@ -18,46 +39,32 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
     return "Grade is too low!";
 }
 
-const std::string& Bureaucrat::get_name() const
+const std::string& Bureaucrat::getName() const
 {
     return name;
 }
 
-const int& Bureaucrat::get_grade() const
+const int& Bureaucrat::getGrade() const
 {
     return grade;
 }
 
-void Bureaucrat::increment_grade()
+void Bureaucrat::incrementGrade()
 {
-    try 
-    {
-        if (grade - 1 < 1)
-            throw GradeTooHighException();
-        grade--;
-    }
-    catch (GradeTooHighException& e)
-    {
-        std::cout << "Exception caught: " << e.what() << std::endl;
-    }
+    if (grade - 1 < 1)
+        throw GradeTooHighException();
+    grade--;
 }
 
-void Bureaucrat::decrement_grade()
+void Bureaucrat::decrementGrade()
 {
-    try
-    {
-        if (grade + 1 > 150)
-            throw GradeTooLowException();
-        grade++;
-    }
-    catch (GradeTooLowException& e)
-    {
-        std::cout << "Excepion caught: " << e.what() << std::endl;
-    }
+    if (grade + 1 > 150)
+        throw GradeTooLowException();
+    grade++;
 }
 
 std::ostream& operator<<(std::ostream& o, const Bureaucrat& br)
 {
-    o << br.get_name() << ", bureaucrat grade " << br.get_grade() << std::endl;
+    o << br.getName() << ", bureaucrat grade " << br.getGrade() << std::endl;
     return o;
 }
