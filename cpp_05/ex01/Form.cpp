@@ -7,6 +7,18 @@ Form::Form(std::string newName, int newSignGrade, int newExGrade) : name(newName
     std::cout << "Constructor is called"<< std::endl;
 }
 
+Form::Form(const Form& other) : name(other.name), signGrade(other.signGrade), exGrade(other.exGrade)
+{
+    isSigned = other.isSigned;
+}
+
+Form& Form::operator = (const Form& other)
+{
+    if (this != &other)
+        isSigned = other.isSigned;
+    return *this;
+}
+
 Form::~Form() {
     std::cout << "Destructor is called"<< std::endl;
 };
@@ -35,7 +47,7 @@ void Form::beSigned(const Bureaucrat& br)
 {
     try
     {
-        if (br.get_grade() >= signGrade)
+        if (br.getGrade() >= signGrade)
             throw GradeTooLowException();
 
         isSigned = true;

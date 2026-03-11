@@ -15,6 +15,8 @@ class Form
 
     public:
         Form(std::string newName, int newSignGrade, int newExGrade);
+        Form(const Form& other);
+        Form& operator = (const Form& other);
         ~Form();
 
         const std::string& getName() const;
