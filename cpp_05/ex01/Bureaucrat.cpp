@@ -3,7 +3,7 @@
 Bureaucrat::Bureaucrat(int newGrade, std::string newName)
     : name(newName), grade(newGrade)
 {
-    std::cout << "Construct is called" << std::endl;
+    std::cout << "Bureaucrat constructor is called" << std::endl;
 
     if (grade < 1)
         throw Bureaucrat::GradeTooHighException();
@@ -13,18 +13,20 @@ Bureaucrat::Bureaucrat(int newGrade, std::string newName)
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
 {
+    std::cout << "Bureaucrat copy constructor is called" << std::endl;
     *this = other;
 }
 
 Bureaucrat& Bureaucrat::operator = (const Bureaucrat& other)
 {
+    std::cout << "Bureaucrat assignment operator is called" << std::endl;
     if (this != &other)
         grade = other.getGrade();
     return *this;
 }
 
 Bureaucrat::~Bureaucrat() {
-    std::cout << "Destructor is called" << std::endl;
+    std::cout << "Bureaucrat destructor is called" << std::endl;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
@@ -59,6 +61,19 @@ void Bureaucrat::decrementGrade()
     if (grade + 1 > 150)
         throw GradeTooLowException();
     grade++;
+}
+
+void Bureaucrat::signForm(Form& form)
+{
+    try
+    {
+        form.beSigned(*this);
+        std::cout << name << " signed " << form.getName() << std::endl;
+    }
+    catch (std::exception& e)
+    {
+        std::cout << name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+    }
 }
 
 std::ostream& operator<<(std::ostream& o, const Bureaucrat& br)

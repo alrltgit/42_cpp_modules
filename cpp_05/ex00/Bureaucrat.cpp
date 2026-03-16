@@ -3,7 +3,7 @@
 Bureaucrat::Bureaucrat(int newGrade, std::string newName)
     : name(newName), grade(newGrade)
 {
-    std::cout << "Construct is called" << std::endl;
+    std::cout << "Constructor is called" << std::endl;
 
     if (grade < 1)
         throw Bureaucrat::GradeTooHighException();

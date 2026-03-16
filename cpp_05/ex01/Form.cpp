@@ -1,26 +1,25 @@
 #include "Form.hpp"
-#include "Bureaucrat.hpp"
 
-Form::Form(std::string newName, int newSignGrade, int newExGrade) : name(newName), signGrade(newSignGrade), exGrade(newExGrade)
+Form::Form(std::string newName, int newSignGrade, int newExGrade) : name(newName), isSigned(false), signGrade(newSignGrade), exGrade(newExGrade)
 {
-    isSigned = false;
-    std::cout << "Constructor is called"<< std::endl;
+    std::cout << "Form constructor is called"<< std::endl;
 }
 
-Form::Form(const Form& other) : name(other.name), signGrade(other.signGrade), exGrade(other.exGrade)
+Form::Form(const Form& other) : name(other.name), isSigned(other.isSigned), signGrade(other.signGrade), exGrade(other.exGrade)
 {
-    isSigned = other.isSigned;
+    std::cout << "Form copy constructor is called"<< std::endl;
 }
 
 Form& Form::operator = (const Form& other)
 {
+    std::cout << "Form copy assignment operator is called"<< std::endl;
     if (this != &other)
         isSigned = other.isSigned;
     return *this;
 }
 
 Form::~Form() {
-    std::cout << "Destructor is called"<< std::endl;
+    std::cout << "Form destructor is called"<< std::endl;
 };
 
 const std::string& Form::getName() const
@@ -45,21 +44,23 @@ const int& Form::getExGrade() const
 
 void Form::beSigned(const Bureaucrat& br)
 {
-    try
-    {
-        if (br.getGrade() >= signGrade)
-            throw GradeTooLowException();
+    if (br.getGrade() >= signGrade)
+        throw GradeTooLowException();
+    isSigned = true;
+}
 
-        isSigned = true;
-    }
-    catch(GradeTooLowException& e)
-    {
-        std::cout << "Exception caught: " << e.what() << std::endl;
-    }
+const char* Form::GradeTooHighException::what() const throw()
+{
+    return "Grade is too high!";
+}
+
+const char* Form::GradeTooLowException::what() const throw()
+{
+    return "Grade is too low!";
 }
 
 std::ostream& operator<<(std::ostream& o, const Form& fr)
 {
-    o << fr.getName() << fr.getIsSigned() << fr.getSignGrade() << fr.getExGrade() << std::endl;
+    o << "Form " << fr.getName() << " is signed: " << (fr.getIsSigned() ? "True" : "False") << ". Grade to sign: " << fr.getSignGrade() << ". Grade to execute: " << fr.getExGrade() << std::endl;
     return o;
 }
