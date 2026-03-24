@@ -14,9 +14,6 @@ enum Type
 
 class TypeDetector
 {
-    private:
-        Type detectedType;
-
     public:
         TypeDetector();
         TypeDetector(const TypeDetector& other);
@@ -24,9 +21,9 @@ class TypeDetector
         ~TypeDetector();
 
         Type detectType(const std::string& l);
-        bool is_int(const std::string& l);
-        bool is_float(const std::string& l);
-        bool is_double(const std::string& l);
+        bool isInt(const std::string& l);
+        bool isFloat(const std::string& l);
+        bool isDouble(const std::string& l);
 };
 
 #endif

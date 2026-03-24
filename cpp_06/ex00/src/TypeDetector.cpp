@@ -23,19 +23,22 @@ TypeDetector::~TypeDetector()
     std::cout << "TypeDetector destructor is called" << std::endl;
 }
 
-bool TypeDetector::is_int(const std::string& l)
+bool TypeDetector::isInt(const std::string& l)
 {
-    for (int i = 0; i < l.length(); ++i)
+    for (size_t i = 0; i < l.length(); ++i)
     {
-        if (l[0] == '-' || l[0] == '+')
-            continue;
+        if (i == 0)
+        {
+            if (l[0] == '-' || l[0] == '+')
+                continue;
+        }
         if (!isdigit(l[i]))
             return false;
     }
     return true;
 }
 
-bool TypeDetector::is_float(const std::string& l)
+bool TypeDetector::isFloat(const std::string& l)
 {
     int hasDot = 0;
 
@@ -44,14 +47,20 @@ bool TypeDetector::is_float(const std::string& l)
 
     if (l[l.length() - 1] != 'f')
         return false;
-    
-    for (int i = 0; i < l.length(); ++i)
+
+    for (size_t i = 0; i < l.length(); ++i)
     {
         if (l[0] == '+' || l[0] == '-')
             continue;
 
+        if (l[i] == 'f')
+            continue;
+
         if (l[i] == '.')
+        {
             hasDot++;
+            continue;
+        }
         
         if (!isdigit(l[i]) || hasDot > 1)
             return false;
@@ -63,20 +72,23 @@ bool TypeDetector::is_float(const std::string& l)
     return true;
 }
 
-bool TypeDetector::is_double(const std::string& l)
+bool TypeDetector::isDouble(const std::string& l)
 {
     int hasDot = 0;
 
     if (l == "-inf" || l == "+inf" || l == "nan")
         return true;
     
-    for (int i = 0; i < l.length(); ++i)
+    for (size_t i = 0; i < l.length(); ++i)
     {
         if (l[0] == '+' || l[0] == '-')
             continue;
         
         if (l[i] == '.')
+        {
             hasDot++;
+            continue;
+        }
         
         if (!isdigit(l[i]) || hasDot > 1)
             return false;
@@ -95,15 +107,15 @@ Type TypeDetector::detectType(const std::string& l)
         return CHAR;
     
     // check if the literal is int
-    if (is_int(l))
+    if (isInt(l))
         return INT;
     
     // check if the literal is float
-    if (is_float(l))
+    if (isFloat(l))
         return FLOAT;
 
     // check if the literal is double
-    if (is_double(l))
+    if (isDouble(l))
         return DOUBLE;
     
     return EMPTY;
