@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "TypeDetector.hpp"
+#include "TypeConverter.hpp"
 
 class ScalarConverter
 {

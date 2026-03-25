@@ -1,5 +1,7 @@
 #include "../includes/ScalarConverter.hpp"
 #include <sstream>
+#include <cstdlib>
+#include <limits>
 
 ScalarConverter::ScalarConverter()
 {
@@ -29,7 +31,8 @@ void ScalarConverter::convert(std::string literal)
 {
     Type type;
     TypeDetector typeDetector;
-    char c;
+    TypeConverter typeConverter;
+    // char c;
     int i;
     float f;
     double d;
@@ -38,11 +41,7 @@ void ScalarConverter::convert(std::string literal)
 
     if (type == CHAR)
     {
-        c = literal[0];
-        if (c)
-            std::cout << "Convertint to char: " << c << std::endl;
-        else
-            std::cout << "The converted to char literal is not displayable" << std::endl;
+        typeConverter.convertToChar(literal);
     }
     else if (type == INT)
     {
