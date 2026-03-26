@@ -32,12 +32,16 @@ void ScalarConverter::convert(std::string literal)
     Type type;
     TypeDetector typeDetector;
     TypeConverter typeConverter;
-    // char c;
-    int i;
-    float f;
-    double d;
 
     type = typeDetector.detectType(literal);
+
+    if (literal == "+inff" || literal == "+inf"
+        || literal == "-inff" || literal == "-inf"
+        || literal == "nanf" || literal == "nan")
+    {
+        typeConverter.convertPseudoLiterals(literal);
+        return ;
+    }
 
     if (type == CHAR)
     {

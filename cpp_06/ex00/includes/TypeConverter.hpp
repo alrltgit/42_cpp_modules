@@ -15,6 +15,7 @@ class TypeConverter
         void convertToInt(std::string& literal);
         void convertToFloat(std::string& literal);
         void convertToDouble(std::string& literal);
+        void convertPseudoLiterals (std::string& literal);
 };
 
 #endif

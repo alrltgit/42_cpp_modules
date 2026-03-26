@@ -42,9 +42,6 @@ bool TypeDetector::isFloat(const std::string& l)
 {
     int hasDot = 0;
 
-    if (l == "-inff" || l == "+inff" || l == "nanf")
-        return true;
-
     if (l[l.length() - 1] != 'f')
         return false;
 
@@ -76,9 +73,6 @@ bool TypeDetector::isDouble(const std::string& l)
 {
     int hasDot = 0;
 
-    if (l == "-inf" || l == "+inf" || l == "nan")
-        return true;
-    
     for (size_t i = 0; i < l.length(); ++i)
     {
         if (l[0] == '+' || l[0] == '-')
