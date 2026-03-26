@@ -11,4 +11,5 @@ add_executable(ex00
         main.cpp
         src/ScalarConverter.cpp
         src/TypeDetector.cpp
+        src/TypeConverter.cpp
 )

@@ -45,32 +45,15 @@ void ScalarConverter::convert(std::string literal)
     }
     else if (type == INT)
     {
-        i = std::atoi(literal.c_str());
-        std::cout << "Converting to int: " << i << std::endl;
+        typeConverter.convertToInt(literal);
     }
     else if (type == FLOAT)
     {
-        if (literal == "+inff" || literal == "innf")
-            f = +std::numeric_limits<float>::infinity();
-        else if (literal == "-inff")
-            f = -std::numeric_limits<float>::infinity();
-        else if (literal == "nanf")
-            f = -std::numeric_limits<float>::quiet_NaN();
-        else
-            f = std::atof(literal.c_str());
-        std::cout << "Converting to float: " << f << std::endl;
+        typeConverter.convertToFloat(literal);
     }
     if (type == DOUBLE)
     {
-        if (literal == "+inff" || literal == "innf")
-            d = +std::numeric_limits<double>::infinity();
-        else if (literal == "-inff")
-            d = -std::numeric_limits<double>::infinity();
-        else if (literal == "nanf")
-            d = -std::numeric_limits<double>::quiet_NaN();
-        else
-            d = std::atof(literal.c_str());
-        std::cout << "Converting to double: " << d << std::endl;
+        typeConverter.convertToDouble(literal);
     }
     else if (type == EMPTY)
         std::cout << "EMPTY" << std::endl;
