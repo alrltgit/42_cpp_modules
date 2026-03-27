@@ -6,6 +6,8 @@
 
 struct Data
 {
+    std::string str1;
+    std::string str2;
     int val;
 };
 

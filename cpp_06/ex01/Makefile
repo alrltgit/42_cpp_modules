@@ -9,7 +9,7 @@ SRC = main.cpp \
 
 OBJS = $(SRC:.cpp=.o)
 
-NAME = Serializer
+NAME = serializer
 
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)

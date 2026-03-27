@@ -12,7 +12,7 @@ SRC = main.cpp \
 
 OBJS = $(SRC:.cpp=.o)
 
-NAME = Base
+NAME = base
 
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)

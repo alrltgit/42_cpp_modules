@@ -11,12 +11,16 @@ Base* generate(void)
     srand(time(NULL));
     int random = rand() % 3;
 
-    if (random == 0)
-        return new A();
-    else if (random == 1)
-        return new B();
-    else
-        return new C();
+    switch (random)
+    {
+        case 0:
+            return new A();
+        case 1:
+            return new B();
+        case 2:
+            return new C();
+    }
+    return NULL;
 }
 
 // In C++, dynamic_cast is a cast operator that converts 
@@ -76,7 +80,6 @@ int main()
     Base *obj = generate();
 
     identify(obj);
-
     identify(*obj);
 
     delete obj;

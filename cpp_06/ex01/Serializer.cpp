@@ -7,13 +7,13 @@ Serializer::Serializer()
 
 Serializer::Serializer(const Serializer& other)
 {
-    (void)other;
+    static_cast<void>(other);
     std::cout << "Copy constructor is called" << std::endl;
 }
 
 Serializer& Serializer::operator = (const Serializer& other)
 {
-    (void)other;
+    static_cast<void>(other);
     std::cout << "Copy assignment operator is called" << std::endl;
     return *this;
 }
