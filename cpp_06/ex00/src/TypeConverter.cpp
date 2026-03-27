@@ -56,27 +56,20 @@ void TypeConverter::convertPseudoLiterals(std::string& literal)
 
 void TypeConverter::convertToChar(std::string& literal)
 {
-    char c = static_cast<char>(literal[0]);
+    char c = literal[0];
 
-    if (!isprint(c))
-    {
-        std::cout << "char: non dislayable" << std::endl;
-        return ;
-    }
+    if (c < 33 || c > 127)
+        std::cout << "char: non displayable" << std::endl;
     else
-    {
         std::cout << "char: " << c << std::endl;
-        std::cout << "int: " << static_cast<int>(c) << std::endl;
-        std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
-        std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
-    }
+    std::cout << "int: " << static_cast<int>(c) << std::endl;
+    std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
+    std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
 }
 
 void TypeConverter::convertToInt(std::string& literal)
 {
-    long int val;
-
-    val = std::atol(literal.c_str());
+    long int val = std::atol(literal.c_str());
 
     if (val < 0 || val > 127)
         std::cout << "char: impossible" << std::endl;
@@ -95,19 +88,22 @@ void TypeConverter::convertToInt(std::string& literal)
     std::cout << "double: " << static_cast<double>(val) << ".0" << std::endl;
 }
 
-#include <typeinfo>
-
 void TypeConverter::convertToFloat(std::string& literal) 
 {
+    std::string validLiteral;
+
+    if (literal.back() == 'f')
+        validLiteral = literal.substr(0, literal.length() - 1);
+
     std::stringstream ss;
     float val;
 
-    ss << literal;
+    ss << validLiteral;
     ss >> val;
 
     if (val < 0 || val > 127)
         std::cout << "char: impossible" << std::endl;
-    else if (!isprint(val))
+    else if (!isprint(static_cast<int>(val)) || static_cast<int>(val) == 32)
         std::cout << "char: non displayable" << std::endl;
     else
         std::cout << "char: " << static_cast<char>(val) << std::endl;
@@ -120,7 +116,7 @@ void TypeConverter::convertToFloat(std::string& literal)
     if (val < FLT_MIN || val > FLT_MAX) 
         std::cout << "float: impossible" << std::endl;
     else
-        std::cout << "float: " << static_cast<float>(val) << ".0f" << std::endl;
+        std::cout << "float: " << val << ".0f" << std::endl;
     
     std::cout << "double: " << static_cast<double>(val) << ".0" << std::endl;
 }
@@ -155,5 +151,5 @@ void TypeConverter::convertToDouble(std::string& literal)
     if (val < DBL_MIN || val > DBL_MAX)
         std::cout << "double: impossible" << std::endl;
     else
-        std::cout << "double: " << static_cast<double>(val) << ".0" << std::endl;
+        std::cout << "double: " << val << ".0" << std::endl;
 }

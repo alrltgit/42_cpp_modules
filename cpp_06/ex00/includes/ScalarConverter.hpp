@@ -2,8 +2,6 @@
 #define SCALAR_CONVERTER_HPP
 
 #include <iostream>
-#include "TypeDetector.hpp"
-#include "TypeConverter.hpp"
 
 class ScalarConverter
 {
@@ -14,7 +12,7 @@ class ScalarConverter
         ~ScalarConverter();
 
     public:
-        static void convert(std::string literal);
+        static void convert(std::string& literal);
 };
 
 #endif
