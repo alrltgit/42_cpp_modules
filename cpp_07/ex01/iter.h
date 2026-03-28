@@ -2,9 +2,16 @@
 #define ITER_H
 
 #include <iostream>
-#include <vector>
 
-template <typename T> void iter(std::vector<T, T> *list, const T listLength, T(*f)(T& val)) {
+template <typename T>
+void iter(T *list, size_t listLength, void(*f)(T& val)) {
+    for (size_t i = 0; i < listLength; ++i) {
+        f(list[i]);
+    }
+}
+
+template <typename T>
+void iter(const T* list, size_t listLength, void(*f)(const T& val)) {
     for (size_t i = 0; i < listLength; ++i) {
         f(list[i]);
     }
