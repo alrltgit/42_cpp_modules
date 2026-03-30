@@ -6,7 +6,7 @@
 template <typename T>
 class Array {
 private:
-    unsigned int size;
+    unsigned int arrSize;
     T *array;
 
 public:
@@ -16,12 +16,13 @@ public:
     Array& operator = (const Array& other);
     ~Array();
 
-    class OutOfBoundException : public exception {
+    class OutOfBoundException : public std::exception {
         virtual const char* what() const throw();
     };
 
     unsigned int& size() const;
     T& operator[](int idx);
+
 };
 
 #endif
