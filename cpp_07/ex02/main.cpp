@@ -2,7 +2,7 @@
 #include <iostream>
 
 int main() {
-    int arr1[] = Array(6);
+    Array<int> arr1(6);
     unsigned int arr1Size = arr1.size();
 
     std::cout << "arr_size: " << arr1Size << std::endl;

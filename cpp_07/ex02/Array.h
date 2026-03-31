@@ -21,8 +21,7 @@ public:
     };
 
     unsigned int& size() const;
-    T& operator[](int idx);
-
+    T& operator[](unsigned int idx);
 };
 
 #endif

@@ -1,14 +1,13 @@
 #include "Array.h"
 
 template <typename T>
-Array<T>::Array() : arrSize(0), array(NULL) {
+Array<T>::Array() : arrSize(0), array(new T[0]) {
     std::cout << "Array default constructor called" << std::endl;
 }
 
 template <typename T>
 Array<T>::Array(unsigned int n) : arrSize(n) {
     std::cout << "Array parameterized constructor called" << std::endl;
-
     array = new T[arrSize];
 }
 
@@ -18,20 +17,20 @@ Array<T>::Array(const Array& other) {
     arrSize  = other.arrSize;
     array = new T[arrSize];
 
-    for (size_t i = 0; i < array.length(); ++i) {
+    for (size_t i = 0; i < arrSize; ++i) {
         array[i] = other.array[i];
     }
 }
 
 template <typename T>
-Array& Array<T>::operator = (const Array& other) {
+Array<T>& Array<T>::operator = (const Array& other) {
     std::cout << "Array copy assignment operator called" << std::endl;
 
     if (this != &other) {
-        size  = other.size;
-        array = new T[size];
+        arrSize  = other.arrSize;
+        array = new T[arrSize];
 
-        for (size_t i = 0; i < array.length(); ++i) {
+        for (size_t i = 0; i < arrSize; ++i) {
             array[i] = other.array[i];
         }
     }
@@ -45,11 +44,19 @@ Array<T>::~Array() {
 }
 
 template <typename T>
+const char* Array<T>::OutOfBoundException::what() const throw() {
+    return "Index is out of bound.";
+}
+
+template <typename T>
 unsigned int& Array<T>::size() const {
     return arrSize;
 }
 
 template <typename T>
-T& Array<T>::operator[](int idx) {
+T& Array<T>::operator[](unsigned int idx) {
+    if (idx >= arrSize) {
+        throw Array<T>::OutOfBoundException();
+    }
     return array[idx];
 }
