@@ -1,4 +1,4 @@
-#include "Array.h"
+#include <iostream>
 
 template <typename T>
 Array<T>::Array() : arrSize(0), array(new T[0]) {
@@ -49,7 +49,7 @@ const char* Array<T>::OutOfBoundException::what() const throw() {
 }
 
 template <typename T>
-unsigned int& Array<T>::size() const {
+unsigned int Array<T>::size() const {
     return arrSize;
 }
 

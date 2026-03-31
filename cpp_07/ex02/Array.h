@@ -20,8 +20,10 @@ public:
         virtual const char* what() const throw();
     };
 
-    unsigned int& size() const;
+    unsigned int size() const;
     T& operator[](unsigned int idx);
 };
 
 #endif
+
+#include "Array.tpp"

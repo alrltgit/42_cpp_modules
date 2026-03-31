@@ -4,8 +4,7 @@ RM = rm -f
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-SRC = main.cpp \
-	Array.tpp
+SRC = main.cpp 
 
 OBJS = $(SRC:.cpp=.o)
 
