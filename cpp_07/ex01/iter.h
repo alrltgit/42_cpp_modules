@@ -3,15 +3,8 @@
 
 #include <iostream>
 
-template <typename T>
-void iter(T *list, size_t listLength, void(*f)(T& val)) {
-    for (size_t i = 0; i < listLength; ++i) {
-        f(list[i]);
-    }
-}
-
-template <typename T>
-void iter(const T* list, size_t listLength, void(*f)(const T& val)) {
+template <typename T, typename F>
+void iter(T *list, const size_t listLength, F(*f)) {
     for (size_t i = 0; i < listLength; ++i) {
         f(list[i]);
     }

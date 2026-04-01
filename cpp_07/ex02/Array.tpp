@@ -15,6 +15,7 @@ template <typename T>
 Array<T>::Array(const Array& other) {
     std::cout << "Array copy constructor called" << std::endl;
     arrSize  = other.arrSize;
+    delete [] array;
     array = new T[arrSize];
 
     for (size_t i = 0; i < arrSize; ++i) {
@@ -28,6 +29,7 @@ Array<T>& Array<T>::operator = (const Array& other) {
 
     if (this != &other) {
         arrSize  = other.arrSize;
+        delete [] array;
         array = new T[arrSize];
 
         for (size_t i = 0; i < arrSize; ++i) {
