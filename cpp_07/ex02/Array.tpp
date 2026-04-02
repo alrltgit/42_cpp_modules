@@ -6,9 +6,8 @@ Array<T>::Array() : arrSize(0), array(new T[0]) {
 }
 
 template <typename T>
-Array<T>::Array(unsigned int n) : arrSize(n) {
+Array<T>::Array(unsigned int n) : arrSize(n), array(new T[arrSize]) {
     std::cout << "Array parameterized constructor called" << std::endl;
-    array = new T[arrSize];
 }
 
 template <typename T>
@@ -29,6 +28,7 @@ Array<T>& Array<T>::operator = (const Array& other) {
 
     if (this != &other) {
         arrSize  = other.arrSize;
+        // array = other.array;
         delete [] array;
         array = new T[arrSize];
 
@@ -48,6 +48,11 @@ Array<T>::~Array() {
 template <typename T>
 const char* Array<T>::OutOfBoundException::what() const throw() {
     return "Index is out of bound.";
+}
+
+template <typename T>
+T* Array<T>::getArray() const {
+    return array;
 }
 
 template <typename T>
