@@ -13,6 +13,10 @@ The goal of these modules is to learn **Object-Oriented Programming in C++**, me
 
 - **CPP04** - Subtype Polymorphism, Abstract Classes and Interfaces.
 
+- **CPP05** - Repetition and Exceptions.
+
+- **CPP06** - C++ casts.
+
 ## ⚙️ Compilation
 
 ```bash
