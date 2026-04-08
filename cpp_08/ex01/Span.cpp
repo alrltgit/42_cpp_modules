@@ -34,7 +34,7 @@ const char* Span::NotEnoughNumbers::what() const throw() {
     return "Span contains not enough numbers.";
 }
 
-const unsigned int Span::getN() const {
+unsigned int Span::getN() const {
     return N;
 }
 
@@ -43,4 +43,47 @@ void Span::addNumber(int num) {
         throw SpanIsFull();
     }
     vect.push_back(num);
+}
+
+int Span::shortestSpan() {
+    int shortestSpan;
+
+    if (vect.size() < 2) {
+        throw NotEnoughNumbers();
+    }
+
+    for (size_t i = 0; i < vect.size() - 1; ++i) {
+        for (size_t j = i + 1; j < vect.size(); ++j) {
+            int tempSpan = vect[j] - vect[i];
+            if (tempSpan < 0)
+                tempSpan *= -1;
+
+            if (tempSpan < shortestSpan)
+                shortestSpan = tempSpan;
+                
+        }
+    }
+
+    return shortestSpan;
+}
+
+int Span::longestSpan() {
+    int longestSpan;
+
+    if (vect.size() < 2) {
+        throw NotEnoughNumbers();
+    }
+
+    for (size_t i = 0; i < vect.size() - 1; ++i) {
+        for (size_t j = i + 1; j < vect.size(); ++j) {
+            int tempSpan = vect[j] - vect[i];
+            if (tempSpan < 0)
+                tempSpan *= -1;
+
+            if (tempSpan > longestSpan)
+                longestSpan = tempSpan;            
+        }
+    }
+
+    return longestSpan;
 }

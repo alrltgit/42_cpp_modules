@@ -4,7 +4,7 @@ RM = rm -f
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-SRC = main.cpp 
+SRC = main.cpp Span.cpp
 
 OBJS = $(SRC:.cpp=.o)
 

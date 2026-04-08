@@ -18,21 +18,21 @@ int main() {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
-        try {
+    try {
         std::vector<int>::iterator it = easyfind(nums, 4);
         std::cout << "Found value: " << *it << std::endl;
     } catch (std::exception &e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
-        try {
+    try {
         std::vector<int>::iterator it = easyfind(nums, 1);
         std::cout << "Found value: " << *it << std::endl;
     } catch (std::exception &e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
-        try {
+    try {
         std::vector<int>::iterator it = easyfind(nums, 0);
         std::cout << "Found value: " << *it << std::endl;
     } catch (std::exception &e) {

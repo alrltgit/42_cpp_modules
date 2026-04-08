@@ -25,8 +25,18 @@ class Span {
             virtual const char* what() const throw();
         };
 
-        const unsigned int getN() const;
+        template <typename T>
+        void addNumbers(T& nums) {
+            size_t distance = std::distance(nums.begin(), nums.end());
+
+            if (vect.size() + distance > N)
+                throw std::runtime_error("Nums size exceeds span size.");
+
+            vect.insert(vect.end(), nums.begin(), nums.end()); // vect.interst(gdzie wstawić, początek zakresu, koniec zakresu)
+        }
+
         void addNumber(int num);
+        unsigned int getN() const;    
         int shortestSpan();
         int longestSpan();
 };
