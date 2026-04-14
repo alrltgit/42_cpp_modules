@@ -11,10 +11,8 @@ Array<T>::Array(unsigned int n) : arrSize(n), array(new T[arrSize]) {
 }
 
 template <typename T>
-Array<T>::Array(const Array& other) {
+Array<T>::Array(const Array& other) : arrSize(other.arrSize), array(NULL) {
     std::cout << "Array copy constructor called" << std::endl;
-    arrSize  = other.arrSize;
-    delete [] array;
     array = new T[arrSize];
 
     for (size_t i = 0; i < arrSize; ++i) {

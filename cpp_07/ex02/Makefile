@@ -2,7 +2,7 @@ CC = c++
 
 RM = rm -f
 
-FLAGS = -std=c++98 -Wall -Wextra -Werror
+FLAGS = -std=c++98 -Wall -Wextra -Werror -g
 
 SRC = main.cpp 
 
