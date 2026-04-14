@@ -28,7 +28,6 @@ Array<T>& Array<T>::operator = (const Array& other) {
 
     if (this != &other) {
         arrSize  = other.arrSize;
-        // array = other.array;
         delete [] array;
         array = new T[arrSize];
 

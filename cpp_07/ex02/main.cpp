@@ -24,19 +24,23 @@ int main() {
     std::cout << "arr.size(): " << arr.size() << std::endl;
     std::cout << "arr1.size(): " << arr1.size() << std::endl;
     std::cout << "arr2.size(): " << arr1.size() << std::endl;
-    
-    for (size_t i = 0; i < arr1.size(); ++i) {
-        std::cout << "arr1[" << i << "]: " << arr1[i] << std::endl;
-    }
 
-    for (size_t i = 0; i < arr2.size(); ++i) {
-        std::cout << "arr2[" << i << "]: " << arr2[i] << std::endl;
-    }
+    // for (size_t i = 0; i < arr1.size(); ++i) {
+    //     std::cout << "arr1[" << i << "]: " << arr1[i] << std::endl;
+    // }
+
+    // for (size_t i = 0; i < arr2.size(); ++i) {
+    //     std::cout << "arr2[" << i << "]: " << arr2[i] << std::endl;
+    // }
+
+    std::cout << "arr: " << arr.getArray() << std::endl;
+    std::cout << "arr1: " << arr1.getArray() << std::endl;
+    std::cout << "arr2: " << arr2.getArray() << std::endl;
 
     arr1[0] = 20;
 
-    std::cout << "arr1[0]" << arr1[0] << std::endl;
-    std::cout << "arr2[0]" << arr2[0] << std::endl;
+    // std::cout << "arr1[0]" << arr1[0] << std::endl;
+    // std::cout << "arr2[0]" << arr2[0] << std::endl;
 
     std::cout << "========= Complex types =========" << std::endl;
     Array<Person> people(3);

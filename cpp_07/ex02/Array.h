@@ -6,12 +6,10 @@
 template <typename T>
 class Array {
     private:
-        // unsigned int arrSize;
-        // T *array;
-
-    public:
         unsigned int arrSize;
         T *array;
+
+    public:
         Array();
         Array(unsigned int n);
         Array(const Array& other);
