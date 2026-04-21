@@ -1,5 +1,6 @@
 #include "Span.h"
 #include <algorithm>
+#include <limits>
 
 Span::Span() : N(0) {
     std::cout << "Span: default constructor is called." << std::endl;
@@ -46,44 +47,33 @@ void Span::addNumber(int num) {
 }
 
 int Span::shortestSpan() {
-    int shortestSpan;
-
     if (vect.size() < 2) {
         throw NotEnoughNumbers();
     }
 
-    for (size_t i = 0; i < vect.size() - 1; ++i) {
-        for (size_t j = i + 1; j < vect.size(); ++j) {
-            int tempSpan = vect[j] - vect[i];
-            if (tempSpan < 0)
-                tempSpan *= -1;
+    int shortestSpan = std::numeric_limits<int>::max();
 
-            if (tempSpan < shortestSpan)
-                shortestSpan = tempSpan;
-                
-        }
+    sort(vect.begin(), vect.end());
+    for (size_t i = 0; i < vect.size() - 1; ++i) {
+        int tempSpan = vect[i] - vect[i + 1];
+        if (tempSpan < 0)
+            tempSpan *= -1;
+
+        if (tempSpan < shortestSpan)
+            shortestSpan = tempSpan;
     }
 
     return shortestSpan;
 }
 
 int Span::longestSpan() {
-    int longestSpan;
-
     if (vect.size() < 2) {
         throw NotEnoughNumbers();
     }
 
-    for (size_t i = 0; i < vect.size() - 1; ++i) {
-        for (size_t j = i + 1; j < vect.size(); ++j) {
-            int tempSpan = vect[j] - vect[i];
-            if (tempSpan < 0)
-                tempSpan *= -1;
+         
+    std::vector<int>::iterator min_el = std::min_element(vect.begin(), vect.end());
+    std::vector<int>::iterator max_el = std::max_element(vect.begin(), vect.end());
 
-            if (tempSpan > longestSpan)
-                longestSpan = tempSpan;            
-        }
-    }
-
-    return longestSpan;
+    return max_el - min_el;
 }
