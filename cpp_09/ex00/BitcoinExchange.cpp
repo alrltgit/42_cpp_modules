@@ -65,11 +65,53 @@ bool dateIsValid(std::string line, size_t pos) {
     return true;
 }
 
-bool valueIsValid(std::string valStr) {
-    if (valStr.empty())
+bool valueIsValid(double val) {
+    // is negative number
+    if (val < 0) {
+        std::cerr << "Error: not a positive number." << std::endl;
         return false;
+    }
+
+    // is value too large
+    if (val > 1000) {
+        std::cerr << "Error: too large a number." << std::endl;
+        return false;
+    }
     
     return true;
+}
+
+float getRate(std::string date) {
+    char fullPath[PATH_MAX];
+
+    if (!realpath("data.csv", fullPath))
+        throw std::runtime_error("Path to the file is not found");
+
+    std::ifstream data(fullPath);
+    if (!data.is_open())
+        throw std::runtime_error("Error opening the file");
+
+    std::string rateStr;
+    std::string line;
+    while (getline(data, line)) {
+        // std::cout << "line: " << line << std::endl;
+        std::string temp = line.substr(0, line.find(','));
+        temp.erase(0, temp.find_first_not_of(" \t"));
+        temp.erase(temp.find_last_not_of(" \t") + 1);
+
+        if (temp == date) {
+            rateStr = line.substr(line.find(',') + 1);
+            break ;
+        }
+    }
+
+    char* end;
+    float rate = std::strtof(rateStr.c_str(), &end);
+
+    if (*end != '\0')
+        return -1;
+
+    return rate;
 }
 
 void BitcoinExchange::parseLine(std::string line, char delimiter) {
@@ -84,34 +126,33 @@ void BitcoinExchange::parseLine(std::string line, char delimiter) {
     std::string date = line.substr(0, pos);
     std::string valStr = line.substr(pos+1);
 
-    if (!valueIsValid(valStr)) {
+    valStr.erase(0, valStr.find_first_not_of(" \t"));
+    valStr.erase(valStr.find_last_not_of(" \t") + 1);
+
+    date.erase(0, date.find_first_not_of(" \t"));
+    date.erase(date.find_last_not_of(" \t") + 1);
+
+    if (valStr.empty()) {
         std::cerr << "Error: bad input => " << line << std::endl;
         return ;
     }
-
-    valStr.erase(0, valStr.find_first_not_of(" \t"));
-    valStr.erase(valStr.find_last_not_of(" \t") + 1);
 
     // convert to float
     char *end;
     double val = std::strtod(valStr.c_str(), &end);
 
-    if (*end != '\0')
-        return;
-
-    // is negative number
-    if (val < 0) {
-        std::cerr << "Error: not a positive number." << std::endl;
+    if (*end != '\0') {
+        std::cerr << "Error: bad input => " << line << std::endl;
         return ;
     }
 
-    // is value too large
-    if (val > 1000) {
-        std::cerr << "Error: too large a number." << std::endl;
+    if (!valueIsValid(val))
         return ;
-    }
 
-    btcData[date] = val;
+    float rate = getRate(date);
+    std::cout << "rate: " << rate << std::endl;
+
+    btcData[date] = val * rate;
 }
 
 void BitcoinExchange::storeDataInMap(char **argv) {
