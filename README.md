@@ -17,6 +17,10 @@ The goal of these modules is to learn **Object-Oriented Programming in C++**, me
 
 - **CPP06** - C++ casts.
 
+- **CPP07** - C++ templates.
+
+- **CPP08** - Templated containers, iterators, algorithms.
+
 ## ⚙️ Compilation
 
 ```bash
