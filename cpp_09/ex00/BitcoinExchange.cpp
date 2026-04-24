@@ -13,7 +13,9 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {
 }
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
-    (void)other;
+    if (this != &other)
+        rates = other.rates;
+    
     return *this;
 }
 
