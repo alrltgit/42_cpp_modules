@@ -39,7 +39,7 @@ bool dateIsValid(std::string line, size_t pos) {
 
     // month is valid
     int month;
-    std::stringstream ss(line.substr(5, 7));
+    std::stringstream ss(line.substr(5, 2));
     ss >> month;
 
     if (month < 1 || month > 12)
@@ -47,7 +47,7 @@ bool dateIsValid(std::string line, size_t pos) {
     
     // day is valid
     int day;
-    std::stringstream sr(line.substr(8, 10));
+    std::stringstream sr(line.substr(8, 2));
     sr >> day;
 
     int year;
@@ -81,37 +81,41 @@ bool valueIsValid(double val) {
     return true;
 }
 
-float getRate(std::string date) {
+float BitcoinExchange::getRate(std::string date) {
+    std::map<std::string, float>::iterator it = rates.lower_bound(date);
+
+    if (it != rates.end() && it->first == date)
+        return it->second;
+
+    if (it == rates.begin() && it->first != date) {
+        std::cerr << "Error: no earlier date available" << std::endl;
+        return -1;
+    }
+
+    --it;
+    return it->second;
+}
+
+void BitcoinExchange::storeRatesInMap() {
     char fullPath[PATH_MAX];
 
     if (!realpath("data.csv", fullPath))
         throw std::runtime_error("Path to the file is not found");
 
-    std::ifstream data(fullPath);
-    if (!data.is_open())
+    std::ifstream file(fullPath);
+    if (!file.is_open())
         throw std::runtime_error("Error opening the file");
 
-    std::string rateStr;
     std::string line;
-    while (getline(data, line)) {
-        // std::cout << "line: " << line << std::endl;
-        std::string temp = line.substr(0, line.find(','));
-        temp.erase(0, temp.find_first_not_of(" \t"));
-        temp.erase(temp.find_last_not_of(" \t") + 1);
+    getline(file, line);
 
-        if (temp == date) {
-            rateStr = line.substr(line.find(',') + 1);
-            break ;
-        }
+    while (getline(file, line)) {
+        std::string date = line.substr(0, line.find(','));
+        float rate = std::atof(line.substr(line.find(',') + 1).c_str());
+        rates[date] = rate;
     }
 
-    char* end;
-    float rate = std::strtof(rateStr.c_str(), &end);
-
-    if (*end != '\0')
-        return -1;
-
-    return rate;
+    file.close();
 }
 
 void BitcoinExchange::parseLine(std::string line, char delimiter) {
@@ -150,12 +154,13 @@ void BitcoinExchange::parseLine(std::string line, char delimiter) {
         return ;
 
     float rate = getRate(date);
-    std::cout << "rate: " << rate << std::endl;
+    if (rate < 0)
+        return ;
 
-    btcData[date] = val * rate;
+    std::cout << date << " => " << val << " = " << val * rate << std::endl;
 }
 
-void BitcoinExchange::storeDataInMap(char **argv) {
+void BitcoinExchange::readInput(char **argv) {
     char fullPath[PATH_MAX];
 
     if (!realpath(argv[1], fullPath))
@@ -168,11 +173,6 @@ void BitcoinExchange::storeDataInMap(char **argv) {
     std::string line;
     while (getline(data, line))
         parseLine(line, '|');
-
-    std::map<std::string, float>::iterator it;
-    for (it = btcData.begin(); it != btcData.end(); ++it) {
-        std::cout << " btcData[" << it->first << "] = " << it->second << std::endl;
-    }
 
     data.close();
 }

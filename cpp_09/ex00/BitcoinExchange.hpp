@@ -7,15 +7,18 @@
 
 class BitcoinExchange {
     private:
-        std::map<std::string, float> btcData;
+        std::map<std::string, float> rates;
+
     public:
         BitcoinExchange();
         BitcoinExchange(const BitcoinExchange& other);
         BitcoinExchange& operator=(const BitcoinExchange& other);
         ~BitcoinExchange();
 
+        void storeRatesInMap();
+        float getRate(std::string date);
         void parseLine(std::string line, char delimiter);
-        void storeDataInMap(char **argv);
+        void readInput(char **argv);
 };
 
 #endif

@@ -8,7 +8,8 @@ int main(int ac, char **argv) {
 
     try {
         BitcoinExchange btc = BitcoinExchange();
-        btc.storeDataInMap(argv);
+        btc.storeRatesInMap();
+        btc.readInput(argv);
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
