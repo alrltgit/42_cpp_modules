@@ -14,7 +14,7 @@ int main(int ac, char **av) {
 
     try {
         PmergeMe ob = PmergeMe();
-        ob.sort(ac, av);
+        ob.run(ac, av);
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
     }

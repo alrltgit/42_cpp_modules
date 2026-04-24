@@ -17,10 +17,15 @@ class PmergeMe {
         PmergeMe& operator=(const PmergeMe& other);
         ~PmergeMe();
 
+        void storeNums(int ac, char **av);
+
         template <typename T>
         void storeNumsInContainers(int ac, char **av, T& container);
 
-        void sort(int ac, char **av);
-};
+        template <typename T>
+        void mergeInsertSort(T& container);
+
+        void run(int ac, char **av);
+    };
 
 #endif
