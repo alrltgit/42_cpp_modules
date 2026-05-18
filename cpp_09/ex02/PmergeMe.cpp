@@ -1,4 +1,6 @@
 #include "PmergeMe.hpp"
+#include <algorithm>
+#include <ctime>
 #include <sstream>
 
 PmergeMe::PmergeMe() {}
@@ -8,7 +10,10 @@ PmergeMe::PmergeMe(const PmergeMe& other) {
 }
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
-    (void)other;    
+    if (this != &other) {
+        numsVector = other.numsVector;
+        numsDeque = other.numsDeque;
+    }
     return *this;
 }
 
@@ -19,20 +24,13 @@ void PmergeMe::storeNumsInContainers(int ac, char **av, T& container) {
     for (int i = 1; i < ac; ++i) {
         std::stringstream ss(av[i]);
         int val;
-        ss >> val;
 
-        if (ss.fail() || val < 0) {
+        if (!(ss >> val) || val < 0 || !(ss >> std::ws).eof()) {
             throw std::runtime_error("Error: invalid number");
         }
 
         container.push_back(val);
     }
-
-    // std::cout << "container: " ;
-    // for (size_t i = 0; i < container.size(); ++i) {
-    //     std::cout << container[i] << ' ';
-    // }
-    std::cout << std::endl;
 }
 
 void PmergeMe::storeNums(int ac, char **av) {
@@ -98,20 +96,33 @@ void PmergeMe::mergeInsertSort(T& container) {
     container.assign(largerNums.begin(), largerNums.end());
 }
 
+template <typename T>
+void PmergeMe::printContainer(const T& container) {
+    for (size_t i = 0; i < container.size(); ++i) {
+        std::cout << container[i] << ' ';
+    }
+    std::cout << std::endl;
+}
+
 void PmergeMe::run(int ac, char **av) {
     storeNums(ac, av);
+
+    std::clock_t startVector = std::clock();
     mergeInsertSort(numsVector);
+    std::clock_t endVector = std::clock();
+
+    std::clock_t startDeque = std::clock();
     mergeInsertSort(numsDeque);
+    std::clock_t endDeque = std::clock();
 
-    std::cout << "numsVector: " ;
-    for (size_t i = 0; i < numsVector.size(); ++i) {
-        std::cout << numsVector[i] << ' ';
-    }
-    std::cout << std::endl;
+    double vectorTime = static_cast<double>(endVector - startVector) * 1000000.0 / CLOCKS_PER_SEC;
+    double dequeTime = static_cast<double>(endDeque - startDeque) * 1000000.0 / CLOCKS_PER_SEC;
 
-    std::cout << "numsDeque: " ;
-    for (size_t i = 0; i < numsDeque.size(); ++i) {
-        std::cout << numsDeque[i] << ' ';
-    }
-    std::cout << std::endl;
+    std::cout << "After: ";
+    printContainer(numsVector);
+
+    std::cout << "Time to process a range of " << numsVector.size()
+              << " elements with std::vector : " << vectorTime << " us" << std::endl;
+    std::cout << "Time to process a range of " << numsDeque.size()
+              << " elements with std::deque : " << dequeTime << " us" << std::endl;
 }

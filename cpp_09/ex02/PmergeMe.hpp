@@ -25,6 +25,9 @@ class PmergeMe {
         template <typename T>
         void mergeInsertSort(T& container);
 
+        template <typename T>
+        void printContainer(const T& container);
+
         void run(int ac, char **av);
     };
 
