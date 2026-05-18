@@ -30,18 +30,25 @@ bool dateIsValid(std::string line, size_t pos) {
     if (pos == std::string::npos)
         return false;
 
+    std::string date = line.substr(0, pos);
+    date.erase(0, date.find_first_not_of(" \t"));
+    date.erase(date.find_last_not_of(" \t") + 1);
+
+    if (date.length() != 10)
+        return false;
+
     // is format Year-Month-Day
-    for (size_t i = 0; i < line.length(); ++i) {
-        if (((i < 4) ||  (i > 4 && i < 7) || (i > 7 && i < 10)) && !isdigit(line[i]))
+    for (size_t i = 0; i < date.length(); ++i) {
+        if (((i < 4) ||  (i > 4 && i < 7) || (i > 7 && i < 10)) && !isdigit(date[i]))
             return false;
 
-        if ((i == 4 || i == 7) && line[i] != '-')
+        if ((i == 4 || i == 7) && date[i] != '-')
             return false;
     }
 
     // month is valid
     int month;
-    std::stringstream ss(line.substr(5, 2));
+    std::stringstream ss(date.substr(5, 2));
     ss >> month;
 
     if (month < 1 || month > 12)
@@ -49,11 +56,11 @@ bool dateIsValid(std::string line, size_t pos) {
     
     // day is valid
     int day;
-    std::stringstream sr(line.substr(8, 2));
+    std::stringstream sr(date.substr(8, 2));
     sr >> day;
 
     int year;
-    std::stringstream st(line.substr(0, 4));
+    std::stringstream st(date.substr(0, 4));
     st >> year;
 
     if (month == 2) {
@@ -173,6 +180,7 @@ void BitcoinExchange::readInput(char **argv) {
         throw std::runtime_error("Error opening the file");
 
     std::string line;
+    getline(data, line);
     while (getline(data, line))
         parseLine(line, '|');
 

@@ -40,11 +40,9 @@ void PmergeMe::storeNums(int ac, char **av) {
 
 template <typename T>
 void PmergeMe::mergeInsertSort(T& container) {
-    // std::cout << "container.size(): " << container.size() << std::endl;
     if (container.size() <= 1)
         return ;
 
-    // split into pairs and sort the pairs
     std::vector<std::pair<int, int> > pairs;
 
     for (size_t i = 0; i + 1 < container.size(); i += 2) {
@@ -56,10 +54,6 @@ void PmergeMe::mergeInsertSort(T& container) {
         }
 
         pairs.push_back(std::make_pair(a, b));
-    
-        // for (size_t i = 0; i < pairs.size(); i++) {
-        //     std::cout << pairs[i].first << " " << pairs[i].second << std::endl;
-        // }
     }
 
     int lastDigit = -1;
