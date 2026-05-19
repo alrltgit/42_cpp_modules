@@ -15,8 +15,8 @@ class RPN {
         RPN& operator=(const RPN& other);
         ~RPN();
 
-        void readInput(char *av);
-        void conductOperation(char av);
+        bool readInput(char *av);
+        bool conductOperation(char av);
 };
 
 #endif

@@ -16,7 +16,7 @@ RPN& RPN::operator=(const RPN& other) {
 
 RPN::~RPN() {}
 
-void RPN::readInput(char *avg) {
+bool RPN::readInput(char *avg) {
     std::string av(avg);
 
     for (size_t i = 0; i < av.length(); ++i) {
@@ -29,9 +29,10 @@ void RPN::readInput(char *avg) {
             case '/':
                 if (operands.size() < 2) {
                     std::cerr << "Error" << std::endl;
-                    return ;
+                    return false;
                 }
-                conductOperation(av[i]);
+                if (!conductOperation(av[i]))
+                    return false;
                 break ;
             
             case ' ':
@@ -43,7 +44,7 @@ void RPN::readInput(char *avg) {
                     operands.push(token);
                 } else {
                     std::cerr << "Error" << std::endl;
-                    return ;
+                    return false;
                 }
             }
 
@@ -51,27 +52,29 @@ void RPN::readInput(char *avg) {
     
     if (operands.size() != 1) {
         std::cerr << "Error" << std::endl;
-        return ;
+        return false;
     }
 
     std::cout << operands.top() << std::endl;
+    return true;
 }
 
-void RPN::conductOperation(char av) {
-    int operand = operands.top();
-    operands.pop();
-    int res = -1;
-
-    if (av == '+') {
-        res = operand + operands.top();
-    } else if (av == '-') {
-        res = operands.top() - operand;
-    } else if (av == '*') {
-        res = operand * operands.top();
-    } else if (av == '/') {
-        res = operands.top() / operand;
+bool RPN::conductOperation(char op) {
+    int right = operands.top(); operands.pop();
+    int left  = operands.top(); operands.pop();
+ 
+    // FIX: guard division by zero before performing the division
+    if (op == '/' && right == 0) {
+        std::cerr << "Error: division by zero" << std::endl;
+        return false;
     }
-
-    operands.pop();
+ 
+    int res;
+    if      (op == '+') res = left + right;
+    else if (op == '-') res = left - right;
+    else if (op == '*') res = left * right;
+    else                res = left / right;
+ 
     operands.push(res);
+    return true;
 }
