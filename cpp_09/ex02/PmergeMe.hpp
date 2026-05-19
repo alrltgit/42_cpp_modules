@@ -10,6 +10,7 @@ class PmergeMe {
     private:
         std::vector<int> numsVector;
         std::deque<int> numsDeque;
+        std::vector<size_t> jacobsthalSequence(size_t n) const;
         
     public:
         PmergeMe();
@@ -17,7 +18,7 @@ class PmergeMe {
         PmergeMe& operator=(const PmergeMe& other);
         ~PmergeMe();
 
-        void storeNums(int ac, char **av);
+        std::vector<size_t> buildInsertionOrder(size_t n) const;
 
         template <typename T>
         void storeNumsInContainers(int ac, char **av, T& container);
@@ -26,7 +27,7 @@ class PmergeMe {
         void mergeInsertSort(T& container);
 
         template <typename T>
-        void printContainer(const T& container);
+        void printContainer(std::string str, const T& container);
 
         void run(int ac, char **av);
 };
