@@ -63,17 +63,20 @@ bool RPN::conductOperation(char op) {
     int right = operands.top(); operands.pop();
     int left  = operands.top(); operands.pop();
  
-    // FIX: guard division by zero before performing the division
     if (op == '/' && right == 0) {
         std::cerr << "Error: division by zero" << std::endl;
         return false;
     }
  
     int res;
-    if      (op == '+') res = left + right;
-    else if (op == '-') res = left - right;
-    else if (op == '*') res = left * right;
-    else                res = left / right;
+    if      (op == '+') 
+        res = left + right;
+    else if (op == '-') 
+        res = left - right;
+    else if (op == '*') 
+        res = left * right;
+    else                
+        res = left / right;
  
     operands.push(res);
     return true;
